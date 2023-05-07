@@ -1,0 +1,12 @@
+#2.配置相关信息
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Xh710708
+#设置Mp相关的配置
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_
