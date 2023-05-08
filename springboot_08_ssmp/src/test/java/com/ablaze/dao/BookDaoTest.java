@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 /**
  * @Author: ablaze
  * @Date: 2023/05/07/12:37
@@ -55,13 +57,14 @@ public class BookDaoTest {
 
     @Test
     void testGetPage(){
-        IPage page = new Page(2,5);
+        IPage<Book> page = new Page<>(2,5);
         bookDao.selectPage(page, null);
         System.out.println(page.getCurrent());
         System.out.println(page.getSize());
         System.out.println(page.getTotal());
         System.out.println(page.getPages());
-        System.out.println(page.getRecords());
+        List<Book> records = page.getRecords();
+        records.forEach(System.out::println);
     }
 
     @Test
