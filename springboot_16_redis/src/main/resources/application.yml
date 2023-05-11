@@ -1,0 +1,8 @@
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    client-type: jedis
+    jedis:
+      pool:
+        max-active: 16
