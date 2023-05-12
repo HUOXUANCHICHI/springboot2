@@ -5,19 +5,7 @@ spring:
       url: jdbc:mysql://localhost:3306/ssm_db?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
       username: root
       password: Xh710708
-#  elasticsearch:
-#    rest:
-#      uris: http://localhost:9200
 
-#  elasticsearch:
-#    username: elastic
-#    password: Xh710708
-  elasticsearch:
-    rest:
-      host: 127.0.0.1
-      port: 9200
-      username: elastic
-      password: Xh710708
 mybatis-plus:
   global-config:
     db-config:
@@ -25,3 +13,6 @@ mybatis-plus:
       id-type: auto
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+server:
+  port: 80
