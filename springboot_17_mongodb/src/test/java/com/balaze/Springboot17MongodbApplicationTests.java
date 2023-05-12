@@ -13,6 +13,7 @@ class Springboot17MongodbApplicationTests {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
     @Test
     void contextLoads() {
         Book book = new Book();
