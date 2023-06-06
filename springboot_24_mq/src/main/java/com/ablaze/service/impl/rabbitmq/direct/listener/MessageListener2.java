@@ -1,0 +1,15 @@
+package com.ablaze.service.impl.rabbitmq.direct.listener;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+/**
+ * @Author: ablaze
+ * @Date: 2023/05/17/15:50
+ */
+//@Component
+public class MessageListener2 {
+    @RabbitListener(queues = "direct_queue")
+    public void receive(String id) {
+        System.out.println("已完成短信发送业务(rabbitmq direct two),id:" + id);
+    }
+}

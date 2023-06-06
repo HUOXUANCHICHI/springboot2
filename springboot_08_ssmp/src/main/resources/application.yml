@@ -1,4 +1,7 @@
 #2.配置相关信息
+server:
+  port: 80
+
 spring:
   datasource:
     druid:
@@ -6,8 +9,33 @@ spring:
       url: jdbc:mysql://localhost:3306/ssm_db?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
       username: root
       password: Xh710708
-server:
-  port: 8080
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
+
+info:
+  appName: @project.artifactId@
+  version: @project.version@
+  company: 传智教育
+  author: itheima
+
 mybatis-plus:
   global-config:
     db-config:
@@ -15,3 +43,4 @@ mybatis-plus:
       id-type: auto
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

@@ -2,14 +2,19 @@ package com.ablaze.service.impl;
 
 import com.ablaze.service.SendMailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.File;
 
 /**
  * @Author: ablaze
  * @Date: 2023/05/14/17:36
  */
-//@Service
+@Service
 public class SendMailServiceImpl2 implements SendMailService {
 
     @Autowired
@@ -22,15 +27,29 @@ public class SendMailServiceImpl2 implements SendMailService {
     //标题
     private String subject = "测试邮件";
     //正文
-    private String context = "测试邮件正文内容";
+    private String context = "<img src='https://ts1.cn.mm.bing.net/th/id/R-C.30b685e211d09036c0a0a60427469748?rik=V3kNzi9WuWUJVA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190916%2f1f2286619ee14290b29c14ab13077835.jpeg&ehk=0RwXvdox0Avpfwxm%2fN2C%2b6FBOtKN4EnrYfficy3TxUc%3d&risl=&pid=ImgRaw&r=0'/><a href='https://www.itcast.cn'>点开有惊喜</a>";
 
     @Override
     public void sendMail() {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(from + "(小甜甜)");
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(context);
-        javaMailSender.send(message);
+
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(from + "(小甜甜)");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(context, true);
+
+            //添加附件
+            File f1 = new File("target/springboot_23_mail-0.0.1-SNAPSHOT.jar");
+            File f2 = new File("src/main/resources/logo.png");
+
+            helper.addAttachment(f1.getName(), f1);
+            helper.addAttachment("1234.png", f2);
+
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
