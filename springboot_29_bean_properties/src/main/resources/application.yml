@@ -1,0 +1,7 @@
+cartoon:
+  cat:
+    name: "猫"
+    age: 5
+  mouse:
+    name: "鼠"
+    age: 1
